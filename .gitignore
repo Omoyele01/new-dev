@@ -1,4 +1,4 @@
-echo ".terraform/
-*.tfstate
-*.tfstate.backup
-terraform.tfvars" >> .gitignore
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
