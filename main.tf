@@ -3,17 +3,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# BACKEND CONFIGURATION
-# terraform {
-#   backend "s3" {
-#     bucket         = "vgs-s3"
-#     key            = "dev/terraform.tfstate"
-#     region         = "us-east-1"
-#     dynamodb_table = "terraform-locks"
-#   }
-# }
-
-
 # STATE STORAGE - S3 Bucket for Terraform state
 resource "aws_s3_bucket" "tf_state" {
   bucket = "vgs-s3"
