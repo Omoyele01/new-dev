@@ -3,43 +3,43 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# STATE STORAGE - S3 Bucket for Terraform state
-resource "aws_s3_bucket" "tf_state" {
-  bucket = "vgs-s3"
+# # STATE STORAGE - S3 Bucket for Terraform state
+# resource "aws_s3_bucket" "tf_state" {
+#   bucket = "vgs-s3"
 
-  tags = {
-    Name = "Terraform State"
-  }
-}
+#   tags = {
+#     Name = "Terraform State"
+#   }
+# }
 
-resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.tf_state.id
+# resource "aws_s3_bucket_versioning" "versioning" {
+#   bucket = aws_s3_bucket.tf_state.id
 
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
+#   versioning_configuration {
+#     status = "Enabled"
+#   }
+# }
 
-resource "aws_s3_bucket_public_access_block" "public_access" {
-  bucket = aws_s3_bucket.tf_state.id
+# resource "aws_s3_bucket_public_access_block" "public_access" {
+#   bucket = aws_s3_bucket.tf_state.id
 
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}
+#   block_public_acls       = true
+#   block_public_policy     = true
+#   ignore_public_acls      = true
+#   restrict_public_buckets = true
+# }
 
-# DynamoDB table for Terraform state locking
-resource "aws_dynamodb_table" "tf_lock" {
-  name         = "terraform-locks"
-  hash_key     = "LockID"
-  billing_mode = "PAY_PER_REQUEST"
+# # DynamoDB table for Terraform state locking
+# resource "aws_dynamodb_table" "tf_lock" {
+#   name         = "terraform-locks"
+#   hash_key     = "LockID"
+#   billing_mode = "PAY_PER_REQUEST"
 
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-}
+#   attribute {
+#     name = "LockID"
+#     type = "S"
+#   }
+# }
 
 # STEP 1: VPC
 resource "aws_vpc" "main" {
