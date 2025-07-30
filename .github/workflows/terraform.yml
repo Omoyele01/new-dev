@@ -9,7 +9,7 @@ on:
       - main
 
 env:
-  AWS_REGION: us-east-1  # Change if your region is different
+  AWS_REGION: us-east-1  
 
 jobs:
   terraform:
@@ -23,7 +23,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
-        terraform_version: 1.6.6  # Update to match your version
+        terraform_version: 1.6.6  
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
